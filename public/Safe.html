@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Energy &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+
+
+
+
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content="" />
+	<meta property="og:image" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:site_name" content="" />
+	<meta property="og:description" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="css/superfish.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+	<div id="fh5co-wrapper">
+		<div id="fh5co-page">
+			<div id="fh5co-header">
+				<header id="fh5co-header-section">
+					<div class="container">
+						<div class="nav-header">
+							<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+							<h1 id="fh5co-logo"><a href="index.html">夜跑计划</a></h1>
+							<!-- START #fh5co-menu-wrap -->
+							<nav id="fh5co-menu-wrap" role="navigation">
+								<ul class="sf-menu" id="fh5co-primary-menu">
+									<!-- 	<li>
+									<a class="active" href="index.html">Home</a>
+								</li> -->
+									<li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+									<li><a href="PMDis.html">武汉环境可视化</a></li>
+									<li>
+										<a href="3D.html">三维实景</a>
+
+									</li>
+									<li><a href="Safe.html" class="active">夜跑安全</a></li>
+									<li><a href="contact.html">Contact</a></li>
+
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</header>
+			</div>
+<!--
+			<div class="btn-group" style="z-index: 20;position: absolute;margin-top: 20px;margin-left: 200px;" data-toggle="buttons">
+				<label class="btn btn-primary ">
+		    <input type="button" name="options" value="option1" checked > 编辑路线
+		  </label>
+				<label class="btn btn-primary">
+		    <input type="button" name="options" value="option2" > 重新编辑
+		  </label>
+				<label class="btn btn-primary">
+		    <input type="button" name="options" value="option3"> 取消
+		  </label>
+			</div>-->
+			<aside id="fh5co-hero" class="js-fullheight">
+				<div class="flexslider js-fullheight">
+					<ul class="slides">
+						<div>
+							<div id="BDMap" style="height: 600px; margin-left: 200px;margin-right: 200px;z-index:0;"></div>
+
+						</div>
+						<p>
+							<button type="button" onclick="getLocation()" style="height: 30px;width:140px;position: absolute;z-index:10;margin-top : -570px;margin-left:1180px;background: white;"><font size = "2">显示当前位置</font></button>
+						</p>
+						<p>
+							<button type="button" onclick="getRoute()" style="height: 30px;width:140px;position: absolute;z-index:10;margin-top : -540px;margin-left:1180px;background: white;"><font size = "2">开始规划夜跑路线</font></button>
+						</p>
+						<p>
+							<button type="button" onclick="remove_overlay()" style="height: 30px;width:140px;position: absolute;z-index:10;margin-top : -500px;margin-left:1180px;background: white;"><font size = "2">重新规划路线</font></button>
+						</p>
+						<p>
+							<button type="button" onclick="editRoute()" style="height: 30px;width:60px;position: absolute;z-index:10;margin-top : -460px;margin-left:1180px;background: white;"><font size = "2">编辑</font></button>
+						</p>
+						<p>
+							<button type="button" onclick="CanceleditRoute()" style="height: 30px;width:60px;position: absolute;z-index:10;margin-top : -460px;margin-left:1260px;background: white;"><font size = "2">取消</font></button>
+						</p>
+						<p>
+							<button type="button" onclick="endRoute()" style="height: 30px;width:140px;position: absolute;z-index:10;margin-top : -300px;margin-left:1180px;background: white;"><font size = "2">显示路线规划</font></button>
+						</p>
+						<p>
+							<button type="button" style="height: 30px;width:140px;position: absolute;z-index:10;margin-top : -250px;margin-left:1180px;background: white;"
+							 data-toggle="modal" data-target="#exampleModal" data-whatever="350921789@qq.com"><font size = "2">路线记录</font></button>
+						</p>
+					</ul>
+				</div>
+			</aside>
+
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="recipient-name" class="control-label">邮箱：</label>
+									<input type="text" class="form-control" id="recipient-name">
+								</div>
+								<div class="form-group">
+									<label for="message-text" class="control-label">信息:</label>
+									<textarea class="form-control" id="message-text"></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" onclick="sendMsg()" class="btn btn-primary">Send message</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- END fh5co-page -->
+
+	</div>
+	<!-- END fh5co-wrapper -->
+
+	<!-- jQuery -->
+
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Nugb2D8pG6jiI8CLN7KGkVSdkgw6bNlS">
+		//v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+//v1.4版本及以前版本的引用方式：src="http://api.map.baidu.com/api?v=1.4&key=您的密钥&callback=initialize"
+	</script>
+
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Superfish -->
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Stellar -->
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Counters -->
+	<script src="js/jquery.countTo.js"></script>
+
+	<!-- Main JS (Do not remove) -->
+	<script src="js/main.js"></script>
+	<script>
+									  var map = new BMap.Map("BDMap");          // 创建地图实例  
+									  var point = new BMap.Point(114.29, 30.55);  // 创建点坐标  
+									  map.centerAndZoom(point, 13);
+
+									  //确定当前坐标
+									  function getLocation() {
+										  if (navigator.geolocation) {
+											  navigator.geolocation.getCurrentPosition(showPosition);
+										  }
+									  }
+
+									  function showPosition(position) {
+										  lat = position.coords.latitude;
+										  lon = position.coords.longitude;
+										  var currentPoint = new BMap.Point(lon, lat);
+										  map.centerAndZoom(currentPoint, 18);
+									  }
+
+									  var route = [];
+									  var i;
+									  function getRoute() {
+										  alert("点击显示规划路线");
+										  route = [];
+										  i = 0;
+										  map.addEventListener("click", function (e) {
+											  var routePoint = new BMap.Point(e.point.lng, e.point.lat);
+											  var marker = new BMap.Marker(routePoint);
+											  map.addOverlay(marker);
+											  //map.addMarker(routePoint);
+											  route[i] = routePoint;
+											  i++;
+										  });
+
+
+									  }
+									  var curve;
+									  function endRoute() {
+										  curve = new BMap.Polyline(route, { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 }); //创建弧线对象
+										  map.addOverlay(curve); //添加到地图中
+
+										  //计算route路程
+										  var RouteDis = 0;
+										  for (var t = 0; t < i - 1; t++) {
+											  RouteDis += map.getDistance(route[t], route[t + 1]);
+										  }
+
+										  var opts = {
+											  width: 100,     // 信息窗口宽度
+											  height: 50,     // 信息窗口高度
+											  title: "路程长度", // 信息窗口标题
+
+										  }
+										  var infoWindow = new BMap.InfoWindow(RouteDis.toFixed(2).toString(), opts);  // 创建信息窗口对象 
+										  //marker.addEventListener("click", function(){          
+										  map.openInfoWindow(infoWindow, route[i - 1]); //开启信息窗口
+										  //});
+									  }
+									  //清除覆盖物
+									  function remove_overlay() {
+										  map.clearOverlays();
+										  route = [];
+
+									  }
+									  $('#exampleModal').on('show.bs.modal', function (event) {
+										  var button = $(event.relatedTarget) // Button that triggered the modal
+										  var recipient = button.data('whatever') // Extract info from data-* attributes
+										  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+										  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+										  var modal = $(this)
+										  modal.find('.modal-title').text('New message to ' + recipient)
+										  modal.find('.modal-body input').val(recipient)
+									  })
+									  function sendMsg() {
+										  alert("邮件发送成功");
+									  }
+									//   $(function () {
+									// 	   $("input[name='options']").click(function () {
+
+									// 	 	  if ($(this).val() == "option1") {
+									// 	 		  curve.enableEditing();
+
+									// 	 	  }
+									// 	   });
+									// 	// $("input[name='options']").on('click', function () {
+									// 	// 	if ($(this).val() == "option1") {
+									// 	// 	curve.enableEditing();
+									// 	// }
+									// 	// });
+									//   })
+									function editRoute(){
+										curve.enableEditing();
+									}
+									function CanceleditRoute(){
+										curve.disableEditing();
+									}
+	</script>
+</body>
+
+</html>
