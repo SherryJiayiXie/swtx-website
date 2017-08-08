@@ -41,9 +41,9 @@ function ArcGIS_Map_Init() {
 
         var arcgis_initCam = {
             position: {
-                x: 114.316200103,
-                y: 30.4110841269,
-                z: 200000,
+                x: 114.2641,
+                y: 30.6024,
+                z: 20000,
                 spatialReference: {
                     wkid: 4326
                 }
@@ -66,7 +66,7 @@ function ArcGIS_Map_Init() {
             arcgis_view.ui.add(arcgis_layerList, "top-right");
         })
 
-        $.getJSON("realproperty.json", function (data) {
+        $.getJSON("/js/json/realproperty-wgs.json", function (data) {
             var features = [];
 
             data.forEach(function(iSender, i) {
@@ -78,7 +78,7 @@ function ArcGIS_Map_Init() {
                     attributes: {
                         ObjectID: iSender.sInstalmentID,
                         title: iSender.sTitle,
-                        num: parseInt(iSender.fPriceAverage)
+                        num: parseInt(iSender.fPriceAverage/5)
                     }
                 })
             }, this);
@@ -89,9 +89,9 @@ function ArcGIS_Map_Init() {
                         resource: {
                             primitive: "cube"
                         },
-                        width: 500,
-                        depth: 500,
-                        material: {color: "#e6b600"}
+                        width: 80,
+                        depth: 80,
+                        material: {color: "#999999"}
                     })]
                 }),
                 label: "平均价格",

@@ -1,284 +1,162 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 
 <head>
-	<style>
-		.legend {
-			line-height: 18px;
-			color: '#555';
-		}
-	</style>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Energy &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
-	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-	<link rel="stylesheet" href="css/MarkerCluster.css" />
-	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	 crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	 crossorigin="anonymous"></script>
-	<!--添加d3.js-->
-
-	<style>
-		rect.bordered {
-			stroke: #E6E6E6;
-			stroke-width: 2px;
-		}
-
-		text.mono {
-			font-size: 9pt;
-			font-family: Consolas, courier;
-			fill: #aaa;
-		}
-
-		text.axis-workweek {
-			fill: #000;
-		}
-
-		text.axis-worktime {
-			fill: #000;
-		}
-	</style>
-	<script src="http://d3js.org/d3.v3.js"></script>
-
-
-	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content="" />
-	<meta property="og:image" content="" />
-	<meta property="og:url" content="" />
-	<meta property="og:site_name" content="" />
-	<meta property="og:description" content="" />
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
-	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
-
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="css/simple-line-icons.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Superfish -->
-	<link rel="stylesheet" href="css/superfish.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-
-	<link rel="stylesheet" href="css/style.css">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	 crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	 crossorigin="anonymous"></script>
-
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="text/x-sass" href="sass/default.sass">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
 </head>
 
 <body>
-	<div id="fh5co-wrapper">
-		<div id="fh5co-page">
-			<div id="fh5co-header">
-				<header id="fh5co-header-section">
-					<div class="container">
-						<div class="nav-header">
-							<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-							<h1 id="fh5co-logo"><a href="index.html">夜跑计划</a></h1>
-							<!-- START #fh5co-menu-wrap -->
-							<nav id="fh5co-menu-wrap" role="navigation">
-								<ul class="sf-menu" id="fh5co-primary-menu">
-									<!-- 	<li>
-									<a class="active" href="index.html">Home</a>
-								</li> -->
-									<li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
-									<li><a class="active" href="PMDis.html">武汉夜跑环境可视化</a></li>
-									<li>
-										<a href="3D.html">三维实景</a>
+    <header>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a href="/" class="brand-logo left">夜跑助手</a>
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view red lighten-2 z-depth-1">
+                            <div class="row valign-wrapper">
+                                <img class="center-align" height="50" src="img/icon.png" alt="logo">
+                                <h4 class="">夜跑助手</h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                    <li><a class="active" href="PMDis.html">武汉夜跑环境可视化</a></li>
+                    <li><a href="3D.html">三维实景</a></li>
+                    <li><a href="Safe.html">夜跑安全</a></li>
+                    <li><a href="contact.html">APP功能展示</a></li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
+                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                    <li class="active"><a href="PMDis.html">武汉夜跑环境可视化</a></li>
+                    <li><a href="3D.html">三维实景</a></li>
+                    <li><a href="Safe.html">夜跑安全</a></li>
+                    <li><a href="contact.html">APP功能展示</a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#mapiddd" class="active">公园绿地分布图</a></li>
+                    <li class="tab"><a href="#chart">武汉污染分布图</a></li>
+                    <li class="tab"><a href="#container">武汉市空气质量</a></li>
+                    <li class="tab"><a href="#container2">武汉市环境2017统计</a></li>
+                    <li class="tab"><a href="#container3">武汉市时变化热度图</a></li>
+                    <li class="tab"><a href="#container4">可视化结果分析</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-									</li>
-									<li><a href="Safe.html">About</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</header>
-			</div>
-			<!-- end:fh5co-header -->
-			<aside id="fh5co-hero" class="js-fullheight">
-				<div class="flexslider js-fullheight">
-					<ul class="slides">
+	<div id="mapiddd" style="height:800px;width:100%;"></div>
+	<div id="chart"  style="height:800px;width:100%;"></div>
+    <div id="container" style="height:800px;width:100%;"></div>
+    <div id="container2" style="height:800px;width:100%;"></div>
+    <div id="container3" style="height:800px;width:100%;"></div>
+    <div id="container4" style="height:800px;width:100%;">
+		<table>
+		<!-- On rows -->
+			<tr>
+				<td><font size="3" >最适宜夜跑地点：(1)金银湖湿地公园
+				<!--</td>
+				<td class="success">-->
+					<img src = "images/hu.jpg" style  = "height:100px;width: 200px;">
+				</td>
+			</tr>
+			<tr class="success">
+				<td >
+					<font size="3" >
+				(2)汉口江滩
+				<!--</td>
+				<td class="success">-->
+					<img src = "images/jt.jpg" style  = "height:100px;width: 200px;">
+				
+				</td>
+			</tr>
+			
+			<tr>
+				<td >
+					<font size="3" >
+					适宜夜跑月份：2~4月
+				</td>
+			
+			</tr>
+			<tr class="success">
+				<td>
+					<font size="3" >
+					适宜夜跑时间：21点~23点
+					<br>      
+					推荐：夜跑的时间最好是在晚饭后半个小时和睡前的两个小时之前的这段时间进行。
+				</td>
+				
+			</tr>
+			
+			<tr >
+				<td>
+				<font size="3" >
+				适宜夜跑时间：周四~周五
+				</td>
+			</tr>
+			<tr class="success">
+				<td>
+					<font size="3" >
+					Tips：1.夜跑的话最好穿宽松一些的适合运动的衣服，然后鞋子的话最好是穿跑鞋，因为现在城市里基本都是水泥路，比较硬，路面弹性本身就不好，对膝盖是有伤害的，所以最好选弹性好一些的跑鞋。
+					<br>
+					2.不要去坑坑洼洼的路面上跑，跑步的地方选择有路灯的，比较亮的地方。这样会比较安全。
+					<br>
+					3.夜跑建议大家选择慢跑,如果是为了燃脂建议跑40分钟到一个小时。不提倡过多运动，不助于睡眠。
+				</td>
+				
+			</tr>
+			
+			<!--<tr class="warning"></tr>
+			<tr class="danger"></tr>
+			<tr class="info"></tr>-->
 
-						<div id="mapiddd" style="height: 600px; margin-left: 200px;margin-right: 200px;"></div>
-						<!--<div id="chart"style="height: 600px; margin-left: 200px;margin-right: 200px;display:none;"></div>-->
-						<div id="container" style=" height: 400px;margin-left: 200px;margin-right: 200px;display:none;z-index: 0;"></div>
-						<div id="container2" style=" height: 400px;margin-left: 200px;margin-right: 200px;display:none;z-index: 0;"></div>
-						<div id="container3" style=" height: 400px;margin-left: 200px;margin-right: 200px;display:none;z-index: 0;"></div>
-						<div id="container4" style=" height: 800px;margin-left: 300px;margin-right: 200px;margin-top :30px;display:none;z-index: 0;">
-							<table class="table table-condensed">
-								<!-- On rows -->
-								<tr>
-
-									<td>
-										<font size="3">
-											最适宜夜跑地点：(1)金银湖湿地公园
-											<!--</td>
-												<td class="success">-->
-											<img src="images/hu.jpg" style="height:100px;width: 200px;">
-
-									</td>
-								</tr>
-								<tr class="success">
-									<td>
-										<font size="3">
-											(2)汉口江滩
-											<!--</td>
-												<td class="success">-->
-											<img src="images/jt.jpg" style="height:100px;width: 200px;">
-
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<font size="3">
-											适宜夜跑月份：2~4月
-									</td>
-
-								</tr>
-								<tr class="success">
-									<td>
-										<font size="3">
-											适宜夜跑时间：21点~23点
-											<br> 推荐：夜跑的时间最好是在晚饭后半个小时和睡前的两个小时之前的这段时间进行。
-									</td>
-
-								</tr>
-
-								<tr>
-									<td>
-										<font size="3">
-											适宜夜跑时间：周四~周五
-									</td>
-								</tr>
-								<tr class="success">
-									<td>
-										<font size="3">
-											Tips：1.夜跑的话最好穿宽松一些的适合运动的衣服，然后鞋子的话最好是穿跑鞋，因为现在城市里基本都是水泥路，比较硬，路面弹性本身就不好，对膝盖是有伤害的，所以最好选弹性好一些的跑鞋。
-											<br> 2.不要去坑坑洼洼的路面上跑，跑步的地方选择有路灯的，比较亮的地方。这样会比较安全。
-											<br> 3.夜跑建议大家选择慢跑,如果是为了燃脂建议跑40分钟到一个小时。不提倡过多运动，不助于睡眠。
-									</td>
-
-								</tr>
-
-								<!--<tr class="warning"></tr>
-											<tr class="danger"></tr>
-											<tr class="info"></tr>-->
-
-							</table>
-
-
-						</div>
-						<form id="form" name="form" style=" position:absolute;margin-top:-580px;margin-left:1380px;z-index:9;">
-							<input type="radio" name="radiobutton" value="gpDis" checked>
-							<font size=2 face="Times">公园绿地分布图 </font><br>
-							<input type="radio" name="radiobutton" value="poDis">
-							<font size="2" face="Times">武汉污染分布图 </font> <br>
-							<input type="radio" name="radiobutton" value="visualization">
-							<font size="2" face="Times">武汉市空气质量(7月)</font><br>
-							<input type="radio" name="radiobutton" value="visualization2">
-							<font size="2" face="Times">武汉市环境2017统计</font><br>
-							<input type="radio" name="radiobutton" value="visualization3">
-							<font size="2" face="Times">武汉市时变化热度图</font><br>
-							<input type="radio" name="radiobutton" value="visualization4" style="margin-left:10px;">
-							<font size="2" face="Times">可视化结果分析</font><br>
-
-							<br>
-
-					</ul>
-				</div>
-			</aside>
-
-
-		</div>
-		<!-- END fh5co-page -->
-
+</table>
 	</div>
-	<!-- END fh5co-wrapper -->
 
-	<!-- jQuery -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <h6>武汉大学</h4>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
 
-
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Superfish -->
-	<script src="js/hoverIntent.js"></script>
-	<script src="js/superfish.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Stellar -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
-	 crossorigin=""></script>
-	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>
-	<script src="js/WuhanFields.js"></script>
-	<script src="js/WuhanF2.js"></script>
-	<link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
-	<script src="https://js.arcgis.com/4.4/"></script>
-	<script src="http://d3js.org/d3.v3.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-</body>
-
-</html>
+    <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript">
-	//var green = L.map('mapiddd').setView([30.55, 114.29], 9);
+    $(document).ready(function () {
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+    })
+</script>
+<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="/js/WuhanFields.js"></script>
+<script src="/js/WuhanF2.js"></script>
+<script>
+    //var green = L.map('mapiddd').setView([30.55, 114.29], 9);
 	//   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	//  	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'			//用人家的底图也不好意思还是先加上copyright吧
 	//  	}).addTo(green);
@@ -330,8 +208,6 @@
 			popup[i * item] = L.marker(latlngs[i * 3], { opacity: 0.0 }).bindPopup(popupContent).addTo(greenplace_map);
 
 		}
-
-
 	}
 	var legend = L.control({ position: 'bottomright' });
 
@@ -346,7 +222,6 @@
 									'#FFEDA0';
 	}
 	legend.onAdd = function (map) {
-
 		var div = L.DomUtil.create('div', 'info legend'),
 			grades = [0, 500, 1000, 4000, 6000, 8000, 10000, 11000],
 			labels = [];
@@ -371,481 +246,183 @@
 	//  	id: 'mapbox.streets',
 	//  	accessToken: 'your.mapbox.access.token' 
 	//  }).addTo(greenplace_map);
+	var greenplace_map2 = L.map('chart').setView([30.55, 114.29], 9);
 	var legend2 = L.control({ position: 'bottomright' });
+	var polygon1 = [];
+	for (var item1 = 0; item1 < 13; item1++) {
+		var latlngs1 = wuhanData.features[item1].geometry.rings[0];
+		// var content = wuhanData.features[item].attributes;
+		var content1 = wuhanData.features[item1].attributes;
+		var area1 = content1.SUM_FID_市界面;
 
-	$(function () {
-		$("input[name='radiobutton']").click(function () {
+		for (var i = 0; i < latlngs.length; i++) {
+			latlngs[i] = latlngs[i].reverse();
+		}
+		if (area1 < 58) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FFCC", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		else if (area1 < 59) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#99FF99", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		else if (area1 < 60) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FF66", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		else if (area1 < 62) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FF00", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		else if (area1 < 64) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#00CC33", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		else if (area1 < 70) {
+			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#009933", fillOpacity: 0.9 });
+			polygon1[item1].addTo(greenplace_map2);
+		}
+		var popupContent1 = 																			//添加每一点的具体信息
+			"<p>" +
+			//"企业名称：" 		+ c.InstitutionName 	+ "<br />" +
+			"武汉区名： " + content1.NAME_1 + "<br/>" +
+			"PM2.5指数： " + content1.SUM_FID_市界面.toPrecision(2) + "<br/>" +
+			"公园个数： " + content1.Shape_Length + "<br/>"
 
-			if ($(this).val() == "gpDis") {
-				document.getElementById("form").style.marginTop = "-860px;";
-				document.getElementById("mapiddd").style.display = "block";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "none";
-				document.getElementById("container3").style.display = "none";
-				document.getElementById("container4").style.display = "none";
-				//var greenplace_map = L.map('mapiddd').setView([30.55, 114.29], 9);
-				//document.getElementById("mapiddd").style.display="block"; 
-				legend2.remove();
-				var polygon2 = [];
-				legend.addTo(greenplace_map);
-				for (var item2 = 0; item2 < 13; item2++) {
-					var latlngs2 = wuhanData.features[item2].geometry.rings[0];
-					var content2 = wuhanData.features[item2].attributes;
-					var area2 = content2.SUM_Area_SQUAREMETERS;
-					for (var i2 = 0; i2 < latlngs2.length; i2++) {
-						latlngs2[i2] = latlngs2[i2].reverse();
-					}
-					if (area2 < 500000) {
-						polygon2[item2] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#FED976", fillOpacity: 0.9 });
-						polygon2[item2].addTo(greenplace_map);
-					}
-					else if (area2 < 1000000) {
-						polygon2[item2] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#FEB24C", fillOpacity: 0.9 });
-						polygon2[item2].addTo(greenplace_map);
-					}
-					else if (area2 < 4000000) {
-						polygon2[item] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#FD8D3C", fillOpacity: 0.9 });
-						polygon2[item].addTo(greenplace_map);
-					}
-					else if (area2 < 6000000) {
-						polygon2[item] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#FC4E2A", fillOpacity: 0.9 });
-						polygon2[item].addTo(greenplace_map);
-					}
-					else if (area2 < 8000000) {
-						polygon2[item] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#E31A1C", fillOpacity: 0.9 });
-						polygon2[item].addTo(greenplace_map);
-					}
-					else if (area2 < 10000000) {
-						polygon2[item] = L.polygon(latlngs2, { color: '#FFFFCC', fillColor: "#BD0026", fillOpacity: 0.9 });
-						polygon2[item].addTo(greenplace_map);
-					}
+			+ "</p>";
+		//var area = content1.SUM_Area_SQUAREMETERS;
+		var popup1 = [];
+		for (var i = 0; i < 40; i++) {
+			popup1[i * item1] = L.marker(latlngs1[i * 3], { opacity: 0.0 }).bindPopup(popupContent1).addTo(greenplace_map2);
 
+		}
+	}
+	function getColor(d) {
+		return d > 70 ? '#009933' :
+			d > 64 ? '#009933' :
+				d > 62 ? '#00CC33' :
+					d > 60 ? '#66FF00' :
+						d > 59 ? '#66FF66' :
+							d > 58 ? '#99FF99' :
+								d > 56 ? '#66FFCC' :
+									'#66FFCC';
+	}
+	legend2.onAdd = function (map) {
 
-					var popupContent2 = 																			//添加每一点的具体信息
-						"<p>" +
-						//"企业名称：" 		+ c.InstitutionName 	+ "<br />" +
-						"武汉区名： " + content2.NAME_1 + "<br/>" +
-						"区域公园面积： " + content2.SUM_Area_SQUAREMETERS.toPrecision(8) + "m²" + "<br/>" +
-						"公园个数： " + content2.Shape_Length + "<br/>"
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades2 = [0, 56, 58, 59, 60, 62, 64, 70],
+			labels2 = [];
 
-						+ "</p>";
+		// loop through our density intervals and generate a label with a colored square for each interval
+		for (var i = 0; i < grades2.length; i++) {
+			div.innerHTML +=
+				'<i style=" width: 18px;height: 18px; float: left;margin-right: 8px; opacity: 0.7;background:' + getColor(grades2[i] + 1) + '"></i> ' +
+				grades2[i] + (grades2[i + 1] ? '&ndash;' + grades2[i + 1] + '<br>' : '+');
+		}
 
-					var popup2 = [];
-					for (var i2 = 0; i2 < 40; i2++) {
-						popup2[i2 * item2] = L.marker(latlngs2[i2 * 3], { opacity: 0.0 }).bindPopup(popupContent).addTo(greenplace_map);
-
-					}
-
-
-				}
-
-
-			}
-			else if ($(this).val() == "poDis") {
-
-				document.getElementById("form").style.marginTop = "-860px;";
-				document.getElementById("mapiddd").style.display = "block";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "none";
-				document.getElementById("container3").style.display = "none";
-				document.getElementById("container4").style.display = "none";
-				legend.remove();
-				var polygon1 = [];
-				for (var item1 = 0; item1 < 13; item1++) {
-					var latlngs1 = wuhanData.features[item1].geometry.rings[0];
-					// var content = wuhanData.features[item].attributes;
-					var content1 = wuhanData.features[item1].attributes;
-					var area1 = content1.SUM_FID_市界面;
-
-					for (var i = 0; i < latlngs.length; i++) {
-						latlngs[i] = latlngs[i].reverse();
-					}
-					if (area1 < 58) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FFCC", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					else if (area1 < 59) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#99FF99", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					else if (area1 < 60) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FF66", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					else if (area1 < 62) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#66FF00", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					else if (area1 < 64) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#00CC33", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					else if (area1 < 70) {
-						polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#009933", fillOpacity: 0.9 });
-						polygon1[item1].addTo(greenplace_map);
-					}
-					var popupContent1 = 																			//添加每一点的具体信息
-						"<p>" +
-						//"企业名称：" 		+ c.InstitutionName 	+ "<br />" +
-						"武汉区名： " + content1.NAME_1 + "<br/>" +
-						"PM2.5指数： " + content1.SUM_FID_市界面.toPrecision(2) + "<br/>" +
-						"公园个数： " + content1.Shape_Length + "<br/>"
-
-						+ "</p>";
-					//var area = content1.SUM_Area_SQUAREMETERS;
-					var popup1 = [];
-					for (var i = 0; i < 40; i++) {
-						popup1[i * item1] = L.marker(latlngs1[i * 3], { opacity: 0.0 }).bindPopup(popupContent1).addTo(greenplace_map);
-
-					}
-				}
-				function getColor(d) {
-					return d > 70 ? '#009933' :
-						d > 64 ? '#009933' :
-							d > 62 ? '#00CC33' :
-								d > 60 ? '#66FF00' :
-									d > 59 ? '#66FF66' :
-										d > 58 ? '#99FF99' :
-											d > 56 ? '#66FFCC' :
-												'#66FFCC';
-				}
-				legend2.onAdd = function (map) {
-
-					var div = L.DomUtil.create('div', 'info legend'),
-						grades2 = [0, 56, 58, 59, 60, 62, 64, 70],
-						labels2 = [];
-
-					// loop through our density intervals and generate a label with a colored square for each interval
-					for (var i = 0; i < grades2.length; i++) {
-						div.innerHTML +=
-							'<i style=" width: 18px;height: 18px; float: left;margin-right: 8px; opacity: 0.7;background:' + getColor(grades2[i] + 1) + '"></i> ' +
-							grades2[i] + (grades2[i + 1] ? '&ndash;' + grades2[i + 1] + '<br>' : '+');
-					}
-
-					//div.style = "line-height: 18px;color: #555;";
-					return div;
-				};
-				div = '<css.legend {line-height: 18px;color:#555;}></css>';
-				legend2.addTo(greenplace_map);
-			}
-			else if ($(this).val() == "visualization") {
-				document.getElementById("mapiddd").style.display = "none";
-				document.getElementById("form").style.marginTop = "-370px";
-				document.getElementById("container").style.display = "block";
-				document.getElementById("container2").style.display = "none";
-				document.getElementById("container3").style.display = "none";
-				document.getElementById("container4").style.display = "none";
-				//document.getElementById("dataset-picker").style.display="block"; 
-
-				//显示heatmap
-
-				Highcharts.chart('container', {
-					chart: {
-						type: 'line'
-					},
-					title: {
-						text: '武汉市空气质量情况日统计情况'
-					},
-					subtitle: {
-						text: '七月份一览表'
-					},
-					xAxis: {
-						categories: [
-							'1',
-							'2',
-							'3',
-							'4',
-							'5',
-							'6',
-							'7',
-							'8',
-							'9',
-							'10',
-							'11',
-							'12',
-							'13',
-							'14',
-							'15',
-							'16',
-							'17',
-							'18',
-							'19',
-							'20',
-							'21',
-							'22',
-							'23',
-							'24',
-							'25',
-							'26',
-							'27',
-							'28',
-							'29',
-							'30'
-						],
-						crosshair: true
-					},
-					yAxis: {
-						min: 0,
-						title: {
-							text: '指标'
-						}
-					},
-					tooltip: {
-						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-						footerFormat: '</table>',
-						shared: true,
-						useHTML: true
-					},
-					plotOptions: {
-						column: {
-							pointPadding: 0.2,
-							borderWidth: 0
-						}
-					},
-					series: [{
-						name: '二氧化硫',
-						data: [4, 4, 5, 5, 6, 5, 6, 6, 6, 4, 5, 4, 5, 4, 5, 5, 5, 4, 4, 3, 3, 4, 4, 4, 4, 4, 4, 4, 3]
-
-					}, {
-						name: '二氧化氮',
-						data: [29, 47, 44, 52, 70, 47, 50, 40, 29, 24, 25, 32, 39, 42, 40, 34, 30, 27, 33, 30, 34, 37, 37, 35, 34, 34, 38, 28, 32]
-
-					}, {
-						name: '可吸入颗粒物',
-						data: [77, 85, 77, 73, 76, 62, 66, 58, 44, 36, 35, 52, 59, 55, 57, 48, 47, 37, 34, 31, 27, 45, 44, 44, 40, 42, 49, 28, 17]
-
-					}, {
-						name: '一氧化碳',
-						data: [39, 30, 21, 20, 23, 16, 17, 16, 13, 12, 12, 15, 17, 17, 18, 17, 18, 15, 16, 16, 16, 16, 15, 16, 19, 21, 23, 16, 17]
-
-					}
-						, {
-						name: '臭氧',
-						data: [111, 92, 111, 90, 125, 66, 90, 82, 49, 44, 44, 51, 65, 64, 64, 46, 47, 41, 42, 55, 19, 33, 38, 42, 40, 47, 88, 60, 22]
-
-					}, {
-						name: '细颗粒物',
-						data: [88, 80, 65, 54, 49, 42, 42, 32, 19, 15, 18, 30, 30, 30, 32, 28, 28, 18, 18, 19, 16, 23, 20, 23, 22, 26, 33, 16, 12]
-
-					}, {
-						name: '空气质量指数',
-						data: [111, 92, 111, 90, 125, 66, 90, 82, 49, 44, 44, 52, 65, 64, 64, 48, 47, 41, 42, 55, 34, 45, 44, 44, 40, 47, 88, 60, 32]
-
-					}]
-				});
-			}
-			else if ($(this).val() == "visualization2") {
-				document.getElementById("mapiddd").style.display = "none";
-				document.getElementById("form").style.marginTop = "-370px";
-				document.getElementById("container2").style.display = "block";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container3").style.display = "none";
-				document.getElementById("container4").style.display = "none";
-				//document.getElementById("dataset-picker").style.display="block"; 
-
-				//显示heatmap
-
-				Highcharts.chart('container2', {
-					chart: {
-						type: 'column'
-					},
-					title: {
-						text: '武汉市环境质量情况年比较'
-					},
-					subtitle: {
-						text: '2016~2017'
-					},
-					xAxis: {
-						categories: [
-							'东湖梨园',
-							'汉阳月湖',
-							'汉口花桥',
-							'武昌紫阳',
-							'青山钢花',
-							'沌口新区',
-							'汉口江滩',
-							'东湖高新',
-							'吴家山',
-							'沉湖七壕',
-							'城区     '
-
-						],
-						crosshair: true
-					},
-					yAxis: {
-						min: 0,
-						title: {
-							text: '监测点位'
-						}
-					},
-					tooltip: {
-						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-						footerFormat: '</table>',
-						shared: true,
-						useHTML: true
-					},
-					plotOptions: {
-						column: {
-							pointPadding: 0.2,
-							borderWidth: 0
-						}
-					},
-					series: [{
-						name: '2016优良天数（1~6月）',
-						data: [104, 97, 100, 103, 81, 105, 80, 92, 102, 71, 112]
-
-					}, {
-						name: '2016优良率%（1~6月）',
-						data: [63.4, 57.7, 57.5, 63.2, 49.4, 59.3, 52.6, 56.1, 56.4, 51.8, 61.5]
-
-					}, {
-						name: '2017优良天数（1~6月）',
-						data: [130, 113, 122, 126, 99, 107, 117, 94, 122, 115, 122]
-
-					}, {
-						name: '2017优良率%（1~6月）',
-						data: [73.4, 64.2, 67.8, 70.4, 55.6, 60.1, 65, 52.8, 68.2, 68.5, 67.4]
-
-					}
-						, {
-						name: '优良天数同比变化',
-						data: [26, 16, 22, 23, 18, 2, 37, 2, 20, 44, 10]
-
-					}, {
-						name: '优良率同比变化%',
-						data: [10, 6.5, 10.3, 7.2, 6.2, 0.8, 12.4, -3.3, 11.8, 16.7, 5.9]
-
-					}]
-				});
-			}
-			else if ($(this).val() == "visualization3") {
-				document.getElementById("mapiddd").style.display = "none";
-				document.getElementById("form").style.marginTop = "-370px";
-				document.getElementById("container2").style.display = "none";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container3").style.display = "block";
-				document.getElementById("container4").style.display = "none";
-
-
-				Highcharts.chart('container3', {
-					title: {
-						text: '武汉环境指数日变化'
-					},
-					xAxis: {
-						categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']
-					},
-					labels: {
-						items: [{
-							html: '污染源成分图',
-							style: {
-								left: '50px',
-								top: '18px',
-								color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-							}
-						}]
-					},
-					series: [{
-						type: 'column',
-						name: 'PM2.5',
-						data: [26, 28, 28, 26, 20, 18, 16, 20, 19, 12, 15, 18, 20, 22, 19, 22, 20, 19, 18, 22, 19, 20, 19, 20]
-					}, {
-						type: 'column',
-						name: 'PM10',
-						data: [47, 48, 53, 41, 28, 28, 19, 24, 0, 0, 11, 17, 23, 22, 21, 24, 20, 22, 28, 28, 21, 21, 17, 18]
-					}, {
-						type: 'column',
-						name: 'O3-1',
-						data: [29, 25, 21, 17, 15, 15, 15, 14, 18, 15, 12, 10, 9, 8, 6, 5, 7, 8, 12, 14, 23, 23, 19, 18]
-					}, {
-						type: 'column',
-						name: 'O3-8',
-						data: [43, 44, 45, 43, 40, 36, 33, 29, 27, 26, 24, 23, 21, 20, 18, 16, 14, 12, 12, 13, 16, 19, 21, 24
-						]
-					}, {
-						type: 'column',
-						name: 'CO',
-						data: [9, 9, 8, 7, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 9, 9]
-					}, {
-						type: 'column',
-						name: 'SO2',
-						data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1]
-					}, {
-						type: 'column',
-						name: 'NO2',
-						data: [8, 9, 8, 9, 9, 8, 7, 7, 8, 10, 7, 8, 9, 9, 10, 12, 12, 12, 11, 12, 9, 10, 15, 16]
-					}, {
-						type: 'spline',
-						name: 'AQI',
-						data: [47, 48, 53, 41, 28, 28, 19, 24, 19, 15, 15, 18, 23, 22, 21, 24, 20, 22, 28, 28, 23, 23, 19, 20],
-						marker: {
-							lineWidth: 2,
-							lineColor: Highcharts.getOptions().colors[3],
-							fillColor: 'white'
-						}
-					}, {
-						type: 'pie',
-						name: 'Total consumption',
-						data: [{
-							name: 'PM2.5',
-							y: 22,
-							color: Highcharts.getOptions().colors[0] // Jane's color
-						}, {
-							name: 'PM10',
-							y: 25,
-							color: Highcharts.getOptions().colors[1] // John's color
-						}, {
-							name: 'O3-1',
-							y: 15,
-							color: Highcharts.getOptions().colors[2] // Joe's color
-						},
-						{
-							name: 'O3-8',
-							y: 20,
-							color: Highcharts.getOptions().colors[3] // Joe's color
-						}, {
-							name: 'CO',
-							y: 19,
-							color: Highcharts.getOptions().colors[4] // Joe's color
-						}, {
-							name: 'SO2',
-							y: 1,
-							color: Highcharts.getOptions().colors[5] // Joe's color
-						}, {
-							name: 'NO2',
-							y: 12,
-							color: Highcharts.getOptions().colors[6] // Joe's color
-						}],
-						center: [100, 80],
-						size: 100,
-						showInLegend: false,
-						dataLabels: {
-							enabled: false
-						}
-					}]
-				});
-
-
-			}
-
-			else if ($(this).val() == "visualization4") {
-
-				document.getElementById("form").style.marginTop = "-800px";
-				document.getElementById("mapiddd").style.display = "none";
-				document.getElementById("container2").style.display = "none";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container3").style.display = "none";
-				document.getElementById("container4").style.display = "block";
-
-
-
-			}
-		});
-	})
-
+		//div.style = "line-height: 18px;color: #555;";
+		return div;
+	};
+	div = '<css.legend {line-height: 18px;color:#555;}></css>';
+	legend2.addTo(greenplace_map2);
 </script>
+<script>
+	Highcharts.chart('container', {
+		chart: {type: 'line'},
+		title: {text: '武汉市空气质量情况日统计情况'},
+		subtitle: {text: '七月份一览表'},
+		xAxis: {
+			categories: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'],
+			crosshair: true
+		},
+		yAxis: {min: 0,title: {text: '指标'}},
+		tooltip: {
+			headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+			footerFormat: '</table>',
+			shared: true,
+			useHTML: true
+		},
+		plotOptions: {column: {pointPadding: 0.2,borderWidth: 0}},
+		series: [
+			{name: '二氧化硫',data: [4, 4, 5, 5, 6, 5, 6, 6, 6, 4, 5, 4, 5, 4, 5, 5, 5, 4, 4, 3, 3, 4, 4, 4, 4, 4, 4, 4, 3]}, 
+			{name: '二氧化氮',data: [29, 47, 44, 52, 70, 47, 50, 40, 29, 24, 25, 32, 39, 42, 40, 34, 30, 27, 33, 30, 34, 37, 37, 35, 34, 34, 38, 28, 32]},
+			{name: '可吸入颗粒物',data: [77, 85, 77, 73, 76, 62, 66, 58, 44, 36, 35, 52, 59, 55, 57, 48, 47, 37, 34, 31, 27, 45, 44, 44, 40, 42, 49, 28, 17]}, 
+			{name: '一氧化碳',data: [39, 30, 21, 20, 23, 16, 17, 16, 13, 12, 12, 15, 17, 17, 18, 17, 18, 15, 16, 16, 16, 16, 15, 16, 19, 21, 23, 16, 17]},
+			{name: '臭氧',data: [111, 92, 111, 90, 125, 66, 90, 82, 49, 44, 44, 51, 65, 64, 64, 46, 47, 41, 42, 55, 19, 33, 38, 42, 40, 47, 88, 60, 22]},
+			{name: '细颗粒物',data: [88, 80, 65, 54, 49, 42, 42, 32, 19, 15, 18, 30, 30, 30, 32, 28, 28, 18, 18, 19, 16, 23, 20, 23, 22, 26, 33, 16, 12]},
+			{name: '空气质量指数',data: [111, 92, 111, 90, 125, 66, 90, 82, 49, 44, 44, 52, 65, 64, 64, 48, 47, 41, 42, 55, 34, 45, 44, 44, 40, 47, 88, 60, 32]}
+		]
+	});
+</script>
+<script>
+	Highcharts.chart('container2', {
+		chart: {type: 'column'},
+		title: {text: '武汉市环境质量情况年比较'},
+		subtitle: {text: '2016~2017'},
+		xAxis: {
+			categories: ['东湖梨园','汉阳月湖','汉口花桥','武昌紫阳','青山钢花','沌口新区','汉口江滩','东湖高新','吴家山','沉湖七壕','城区'],
+			crosshair: true
+		},
+		yAxis: {min: 0,title: {text: '监测点位'}},
+		tooltip: {
+			headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+			footerFormat: '</table>',
+			shared: true,
+			useHTML: true
+		},
+		plotOptions: {column: {pointPadding: 0.2,borderWidth: 0}},
+		series: [
+			{name: '2016优良天数（1~6月）',data: [104, 97, 100, 103, 81, 105, 80, 92, 102, 71, 112]}, 
+			{name: '2016优良率%（1~6月）',data: [63.4, 57.7, 57.5, 63.2, 49.4, 59.3, 52.6, 56.1, 56.4, 51.8, 61.5]}, 
+			{name: '2017优良天数（1~6月）',data: [130, 113, 122, 126, 99, 107, 117, 94, 122, 115, 122]}, 
+			{name: '2017优良率%（1~6月）',data: [73.4, 64.2, 67.8, 70.4, 55.6, 60.1, 65, 52.8, 68.2, 68.5, 67.4]}, 
+			{name: '优良天数同比变化',data: [26, 16, 22, 23, 18, 2, 37, 2, 20, 44, 10]}, 
+			{name: '优良率同比变化%',data: [10, 6.5, 10.3, 7.2, 6.2, 0.8, 12.4, -3.3, 11.8, 16.7, 5.9]}
+		]
+	});
+</script>
+<script>
+	Highcharts.chart('container3', {
+		title: {text: '武汉环境指数日变化'},
+		xAxis: {categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']},
+		labels: {items: [{html: '污染源成分图',style: {left: '50px',top: '18px',color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'}}]},
+		series: [
+			{type: 'column',name: 'PM2.5',data: [26, 28, 28, 26, 20, 18, 16, 20, 19, 12, 15, 18, 20, 22, 19, 22, 20, 19, 18, 22, 19, 20, 19, 20]}, 
+			{type: 'column',name: 'PM10',data: [47, 48, 53, 41, 28, 28, 19, 24, 0, 0, 11, 17, 23, 22, 21, 24, 20, 22, 28, 28, 21, 21, 17, 18]}, 
+			{type: 'column',name: 'O3-1',data: [29, 25, 21, 17, 15, 15, 15, 14, 18, 15, 12, 10, 9, 8, 6, 5, 7, 8, 12, 14, 23, 23, 19, 18]}, 
+			{type: 'column',name: 'O3-8',data: [43, 44, 45, 43, 40, 36, 33, 29, 27, 26, 24, 23, 21, 20, 18, 16, 14, 12, 12, 13, 16, 19, 21, 24]}, 
+			{type: 'column',name: 'CO',data: [9, 9, 8, 7, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 9, 9]}, 
+			{type: 'column',name: 'SO2',data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1]}, 
+			{type: 'column',name: 'NO2',data: [8, 9, 8, 9, 9, 8, 7, 7, 8, 10, 7, 8, 9, 9, 10, 12, 12, 12, 11, 12, 9, 10, 15, 16]}, 
+			{
+				type: 'spline',
+				name: 'AQI',
+				data: [47, 48, 53, 41, 28, 28, 19, 24, 19, 15, 15, 18, 23, 22, 21, 24, 20, 22, 28, 28, 23, 23, 19, 20],
+				marker: {lineWidth: 2,lineColor: Highcharts.getOptions().colors[3],fillColor: 'white'}
+			}, 
+			{
+				type: 'pie',
+				name: 'Total consumption',
+				data: [
+					{name: 'PM2.5',y: 22,color: Highcharts.getOptions().colors[0]}, 
+					{name: 'PM10',y: 25,color: Highcharts.getOptions().colors[1]}, 
+					{name: 'O3-1',y: 15,color: Highcharts.getOptions().colors[2]},
+					{name: 'O3-8',y: 20,color: Highcharts.getOptions().colors[3]}, 
+					{name: 'CO',y: 19,color: Highcharts.getOptions().colors[4]}, 
+					{name: 'SO2',y: 1,color: Highcharts.getOptions().colors[5]}, 
+					{name: 'NO2',y: 12,color: Highcharts.getOptions().colors[6]}
+				],
+				center: [100, 80],
+				size: 100,
+				showInLegend: false,
+				dataLabels: {enabled: false}
+			}]
+	});
+</script>
+</body>
 
-<css .legend2 { line-height: 18px; color: '#555'; }></css>
+</html>
