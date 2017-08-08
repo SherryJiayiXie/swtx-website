@@ -205,101 +205,101 @@
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
 	<script>
-									  var map = new BMap.Map("BDMap");          // 创建地图实例  
-									  var point = new BMap.Point(114.29, 30.55);  // 创建点坐标  
-									  map.centerAndZoom(point, 13);
+			var map = new BMap.Map("BDMap");          // 创建地图实例  
+			var point = new BMap.Point(114.29, 30.55);  // 创建点坐标  
+			map.centerAndZoom(point, 13);
 
-									  //确定当前坐标
-									  function getLocation() {
-										  if (navigator.geolocation) {
-											  navigator.geolocation.getCurrentPosition(showPosition);
-										  }
-									  }
+			//确定当前坐标
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				}
+			}
 
-									  function showPosition(position) {
-										  lat = position.coords.latitude;
-										  lon = position.coords.longitude;
-										  var currentPoint = new BMap.Point(lon, lat);
-										  map.centerAndZoom(currentPoint, 18);
-									  }
+			function showPosition(position) {
+				lat = position.coords.latitude;
+				lon = position.coords.longitude;
+				var currentPoint = new BMap.Point(lon, lat);
+				map.centerAndZoom(currentPoint, 18);
+			}
 
-									  var route = [];
-									  var i;
-									  function getRoute() {
-										  alert("点击显示规划路线");
-										  route = [];
-										  i = 0;
-										  map.addEventListener("click", function (e) {
-											  var routePoint = new BMap.Point(e.point.lng, e.point.lat);
-											  var marker = new BMap.Marker(routePoint);
-											  map.addOverlay(marker);
-											  //map.addMarker(routePoint);
-											  route[i] = routePoint;
-											  i++;
-										  });
+			var route = [];
+			var i;
+			function getRoute() {
+				alert("点击显示规划路线");
+				route = [];
+				i = 0;
+				map.addEventListener("click", function (e) {
+					var routePoint = new BMap.Point(e.point.lng, e.point.lat);
+					var marker = new BMap.Marker(routePoint);
+					map.addOverlay(marker);
+					//map.addMarker(routePoint);
+					route[i] = routePoint;
+					i++;
+				});
 
 
-									  }
-									  var curve;
-									  function endRoute() {
-										  curve = new BMap.Polyline(route, { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 }); //创建弧线对象
-										  map.addOverlay(curve); //添加到地图中
+			}
+			var curve;
+			function endRoute() {
+				curve = new BMap.Polyline(route, { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 }); //创建弧线对象
+				map.addOverlay(curve); //添加到地图中
 
-										  //计算route路程
-										  var RouteDis = 0;
-										  for (var t = 0; t < i - 1; t++) {
-											  RouteDis += map.getDistance(route[t], route[t + 1]);
-										  }
+				//计算route路程
+				var RouteDis = 0;
+				for (var t = 0; t < i - 1; t++) {
+					RouteDis += map.getDistance(route[t], route[t + 1]);
+				}
 
-										  var opts = {
-											  width: 100,     // 信息窗口宽度
-											  height: 50,     // 信息窗口高度
-											  title: "路程长度", // 信息窗口标题
+				var opts = {
+					width: 100,     // 信息窗口宽度
+					height: 50,     // 信息窗口高度
+					title: "路程长度", // 信息窗口标题
 
-										  }
-										  var infoWindow = new BMap.InfoWindow(RouteDis.toFixed(2).toString(), opts);  // 创建信息窗口对象 
-										  //marker.addEventListener("click", function(){          
-										  map.openInfoWindow(infoWindow, route[i - 1]); //开启信息窗口
-										  //});
-									  }
-									  //清除覆盖物
-									  function remove_overlay() {
-										  map.clearOverlays();
-										  route = [];
+				}
+				var infoWindow = new BMap.InfoWindow(RouteDis.toFixed(2).toString(), opts);  // 创建信息窗口对象 
+				//marker.addEventListener("click", function(){          
+				map.openInfoWindow(infoWindow, route[i - 1]); //开启信息窗口
+				//});
+			}
+			//清除覆盖物
+			function remove_overlay() {
+				map.clearOverlays();
+				route = [];
 
-									  }
-									  $('#exampleModal').on('show.bs.modal', function (event) {
-										  var button = $(event.relatedTarget) // Button that triggered the modal
-										  var recipient = button.data('whatever') // Extract info from data-* attributes
-										  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-										  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-										  var modal = $(this)
-										  modal.find('.modal-title').text('New message to ' + recipient)
-										  modal.find('.modal-body input').val(recipient)
-									  })
-									  function sendMsg() {
-										  alert("邮件发送成功");
-									  }
-									//   $(function () {
-									// 	   $("input[name='options']").click(function () {
+			}
+			$('#exampleModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget) // Button that triggered the modal
+				var recipient = button.data('whatever') // Extract info from data-* attributes
+				// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+				// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+				var modal = $(this)
+				modal.find('.modal-title').text('New message to ' + recipient)
+				modal.find('.modal-body input').val(recipient)
+			})
+			function sendMsg() {
+				alert("邮件发送成功");
+			}
+		//   $(function () {
+		// 	   $("input[name='options']").click(function () {
 
-									// 	 	  if ($(this).val() == "option1") {
-									// 	 		  curve.enableEditing();
+		// 	 	  if ($(this).val() == "option1") {
+		// 	 		  curve.enableEditing();
 
-									// 	 	  }
-									// 	   });
-									// 	// $("input[name='options']").on('click', function () {
-									// 	// 	if ($(this).val() == "option1") {
-									// 	// 	curve.enableEditing();
-									// 	// }
-									// 	// });
-									//   })
-									function editRoute(){
-										curve.enableEditing();
-									}
-									function CanceleditRoute(){
-										curve.disableEditing();
-									}
+		// 	 	  }
+		// 	   });
+		// 	// $("input[name='options']").on('click', function () {
+		// 	// 	if ($(this).val() == "option1") {
+		// 	// 	curve.enableEditing();
+		// 	// }
+		// 	// });
+		//   })
+		function editRoute(){
+			curve.enableEditing();
+		}
+		function CanceleditRoute(){
+			curve.disableEditing();
+		}
 	</script>
 </body>
 

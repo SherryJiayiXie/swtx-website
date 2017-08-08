@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="text/x-sass" href="sass/default.sass">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+</head>
+
+<body>
+    <header>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+				<a href="/" class="brand-logo left"><span> </span>夜跑助手</a>
+				<ul id="slide-out" class="side-nav">
+					<li>
+						<div class="user-view red lighten-2 z-depth-1">
+							<div class="row valign-wrapper">
+								<img class="center-align" height="50" src="img/icon.png" alt="logo">
+								<h4 class="">夜跑助手</h5>
+							</div>
+						</div>
+					</li>
+					<li class="active"><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+					<li><a href="PMDis.html">武汉夜跑环境可视化</a></li>
+					<li><a href="3D.html">三维实景</a></li>
+					<li><a href="Safe.html">夜跑安全</a></li>
+					<li><a href="contact.html">APP功能展示</a></li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
+					<li class="active"><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+					<li><a href="PMDis.html">武汉夜跑环境可视化</a></li>
+					<li><a href="3D.html">三维实景</a></li>
+					<li><a href="Safe.html">夜跑安全</a></li>
+					<li><a href="contact.html">APP功能展示</a></li>
+				</ul>
+				<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+			</div>
+			<div class="nav-content">
+				<div class="row" style="margin:0px;">
+					<div class="col">
+						<a class="waves-effect waves-light btn-large" onclick="getLocation()">当前附近公园</a>
+					</div>
+					<div class="col s1"></div>
+					<div class="col">
+						<div class="input-field">
+							<select id="choose">
+								<option value="" disabled selected>选择步行时间</option>
+								<option value="20">20min</option>
+								<option value="40">40min</option>
+								<option value="60">60min</option>
+								<option value="90">90min</option>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<a class="waves-effect waves-light btn-large" onclick="getBestGP()">最佳公园<i class="material-icons right">send</i></a> 
+					</div>
+				</div>
+			</div>
+        </nav>
+    </header>
+
+    <div id="mapiddd" style="width:100%;height:800px"></div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <h6>武汉大学</h4>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="../js/greenPlace.js"></script>
+    <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select').material_select();
+            $(".button-collapse").sideNav();
+        })
+    </script>
+    <script type="text/javascript">
+        var greenplace_map = L.map('mapiddd').setView([30.55, 114.29], 10);
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'			//用人家的底图也不好意思还是先加上copyright吧
+		}).addTo(greenplace_map);
+
+
+		//添加底图
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			maxZoom: 18,
+			id: 'mapbox.streets',
+			accessToken: 'your.mapbox.access.token' // 要写你自己的accessToken这是啥？不懂
+		}).addTo(greenplace_map);
+
+		for (var item = 0; item < 210; item++) {
+			var latlngs = GPData.features[item].geometry.rings[0];
+			for (var i = 0; i < latlngs.length; i++) {
+				latlngs[i] = latlngs[i].reverse();
+			}
+			var content = GPData.features[item].attributes;
+			if (content.Area > 1000000) {
+				var polygon = L.polygon(latlngs, { color: '#339900' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 500000) {
+				var polygon = L.polygon(latlngs, { color: '#009933' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 300000) {
+				var polygon = L.polygon(latlngs, { color: '#009966' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 200000) {
+				var polygon = L.polygon(latlngs, { color: '#33CC66' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 100000) {
+				var polygon = L.polygon(latlngs, { color: '#33FF99' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 50000) {
+				var polygon = L.polygon(latlngs, { color: '#33FF99' }).addTo(greenplace_map);
+			}
+			else if (content.Area > 10000) {
+				var polygon = L.polygon(latlngs, { color: '#33FF99' }).addTo(greenplace_map);
+			}
+			var time = Math.sqrt(content.Area) * 10 / 300;
+
+
+			var popupContent = 																			//添加每一点的具体信息
+				"<p>" +
+				//"企业名称：" 		+ c.InstitutionName 	+ "<br />" +
+				"绿地名称： " + content.NAME + "<br/>" +
+				"绿地面积： " + content.Area + "m²" + "<br/>" +
+				"预计夜跑时间： " + time.toPrecision(2) + "min" + "<br/>"
+
+				+ "</p>";
+			var popup = L.marker(latlngs[0], { opacity: 0.0 }).bindPopup(popupContent).addTo(greenplace_map);
+
+
+
+
+		}
+
+		// info.addTo(greenplace_map);
+		var lat, lon;
+		var loc_end;
+		function  getLocation() {
+			if  (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			}
+		}
+		var GPnum = 0;
+		var posGP = [];
+		function  showPosition(position) {
+			lat = position.coords.latitude;
+			lon = position.coords.longitude;
+			greenplace_map.setView([lat, lon], 13);
+			//查找当前位置最近的绿地
+
+			for (var i = 0; i < 210; i++) {
+				var latlngs = GPData.features[i].geometry.rings[0];
+				var GP = GPData.features[i];
+				if (Math.abs(latlngs[0][0] - lat < 0.06) && Math.abs(latlngs[0][1] -  lon) < 0.06) {
+					//红色标出目标区域
+					var polygonObject = L.polygon(latlngs, { color: 'red' }).addTo(greenplace_map);
+					posGP[GPnum] = GP;
+					GPnum++;
+				}
+
+			}
+
+		}
+		function getBestGP() {
+			var myselect = document.getElementById("choose");
+			var index = myselect.selectedIndex ;
+			var runningTime = myselect.options[index].value;
+			for (var i = 0; i < GPnum; i++) {
+				var time = (Math.sqrt(posGP[i].attributes.Area) * 10 / 300);
+				if (time > (runningTime - 10) && time < (runningTime + 10)) {
+					// var popup = L.marker(latlngs[0],{opacity: 0.0}).bindPopup(popupContent).openOn(greenplace_map);
+					// var popup = L.marker((posGP[i].geometry.rings[0],{opacity: 0.0}).bindPopup(popupContent).openOn(greenplace_map);
+					//var time = (Math.sqrt(posGP[i].attributes.Area)/30);
+					var popupContent = 																			//添加每一点的具体信息
+						"<p>" +
+						//"企业名称：" 		+ c.InstitutionName 	+ "<br />" +
+						"绿地名称： " + posGP[i].attributes.NAME + "<br/>" +
+						"绿地面积： " + posGP[i].attributes.Area + "m²" + "<br/>" +
+						"预计夜跑时间： " + time.toPrecision(2) + "min" + "<br/>"
+						// +"<button onclick = "+"navi()"+">导航</button>"+"<br/>"
+						+ "</p>";
+					var loc = posGP[i].geometry.rings[0];
+					var popup = L.popup()
+						.setLatLng(loc[0])
+						.setContent(popupContent)
+						.openOn(greenplace_map);
+					greenplace_map.setView(loc[0], 13);
+					loc_end = loc[0]
+
+				}
+			}
+		}
+		function navi() {
+			//导航？
+		}
+
+		greenplace_map.setView([30.55, 114.29], 11);
+    </script>
+</body>
+
+</html>
