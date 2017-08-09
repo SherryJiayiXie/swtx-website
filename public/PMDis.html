@@ -31,18 +31,28 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
-                    <li><a class="active" href="PMDis.html">武汉夜跑环境可视化</a></li>
+                    <li><a href="PMDis.html" class="waves-effect">夜跑环境分析</a></li>
                     <li><a href="3D.html">三维实景</a></li>
                     <li><a href="Safe.html">夜跑安全</a></li>
-                    <li><a href="contact.html">APP功能展示</a></li>
-				</ul>
+                    <li><div class="divider"></div></li>
+                    <li><a class="subheader">导航</a></li>
+                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                    <li><a href="route-to-gym.html">健身房导航</a></li>
+                    <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
+                </ul>
 				<ul class="right hide-on-med-and-down">
-                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
-                    <li class="active"><a href="PMDis.html">武汉夜跑环境可视化</a></li>
+                    <li class="active"><a href="PMDis.html">夜跑环境分析</a></li>
                     <li><a href="3D.html">三维实景</a></li>
                     <li><a href="Safe.html">夜跑安全</a></li>
-                    <li><a href="contact.html">APP功能展示</a></li>
+					<li><a href="gym-score.html">健身房评估</a></li>
+                    <li>
+                        <a class="dropdown-button" href="#!" data-activates="nav-avigation-dropdown">导航<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="nav-avigation-dropdown" class="dropdown-content">
+                            <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                            <li><a href="route-to-gym.html">健身房导航</a></li>
+                            <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="nav-content">
@@ -147,6 +157,9 @@
     $(document).ready(function () {
         $('select').material_select();
         $(".button-collapse").sideNav();
+			$(".dropdown-button").dropdown({
+                constrainWidth: false
+            });
     })
 </script>
 <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
