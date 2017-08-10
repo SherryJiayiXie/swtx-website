@@ -22,7 +22,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>  
-                <a href="/" class="brand-logo">夜跑助手</a>
+                <a href="/" class="brand-logo left">夜跑助手</a>
                 <ul id="slide-out" class="side-nav">
                     <li>
                         <div class="user-view red lighten-2 z-depth-1">
@@ -32,28 +32,18 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="PMDis.html" class="waves-effect">夜跑环境分析</a></li>
-                    <li><a href="3D.html">三维实景</a></li>
-                    <li><a href="Safe.html">夜跑安全</a></li>
-                    <li><div class="divider"></div></li>
-                    <li><a class="subheader">导航</a></li>
-                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
-                    <li><a href="route-to-gym.html">健身房导航</a></li>
-                    <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
-                </ul>
-                <ul class="right hide-on-med-and-down">
+                    <li><a class="active" href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
                     <li><a href="PMDis.html">夜跑环境分析</a></li>
                     <li class="active"><a href="3D.html">三维实景</a></li>
                     <li><a href="Safe.html">夜跑安全</a></li>
-                    <li><a href="gym-score.html">健身房评估</a></li>
-                    <li>
-                        <a class="dropdown-button" href="#!" data-activates="nav-avigation-dropdown">导航<i class="material-icons right">arrow_drop_down</i></a>
-                        <ul id="nav-avigation-dropdown" class="dropdown-content">
-                            <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
-                            <li><a href="route-to-gym.html">健身房导航</a></li>
-                            <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="contact.html">APP功能展示</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                    <li><a href="PMDis.html">夜跑环境分析</a></li>
+                    <li class="active"><a href="3D.html">三维实景</a></li>
+                    <li><a href="Safe.html">夜跑安全</a></li>
+                    <li><a href="contact.html">APP功能展示</a></li>
                 </ul>
             </div>
         </nav>
@@ -83,12 +73,6 @@
         $(document).ready(function () {
             $('select').material_select();
             $(".button-collapse").sideNav();
-            $(".dropdown-button").dropdown({
-                constrainWidth: false
-            });
-            $('.collapsible').collapsible({
-                accordion: false
-            });
         })
     </script>
     <script src="https://js.arcgis.com/4.4/"></script>

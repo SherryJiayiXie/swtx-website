@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="text/x-sass" href="sass/default.sass">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+</head>
+
+<body>
+    <header>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo left">夜跑助手</a>
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view red lighten-2 z-depth-1">
+                            <div class="row valign-wrapper">
+                                <img class="center-align" height="50" src="img/icon.png" alt="logo">
+                                <h4 class="">夜跑助手</h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="PMDis.html" class="waves-effect">夜跑环境分析</a></li>
+                    <li><a href="3D.html">三维实景</a></li>
+                    <li><a href="Safe.html">夜跑安全</a></li>
+                    <li><div class="divider"></div></li>
+                    <li><a class="subheader">导航</a></li>
+                    <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                    <li><a href="route-to-gym.html">健身房导航</a></li>
+                    <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="PMDis.html">夜跑环境分析</a></li>
+                    <li><a href="3D.html">三维实景</a></li>
+                    <li><a href="Safe.html">夜跑安全</a></li>
+					<li><a href="gym-score.html">健身房评估</a></li>
+                    <li>
+                        <a class="dropdown-button" href="#!" data-activates="nav-avigation-dropdown">导航<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="nav-avigation-dropdown" class="dropdown-content">
+                            <li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+                            <li><a href="route-to-gym.html">健身房导航</a></li>
+                            <li><a href="route-to-sportshop.html">健身用品店导航</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+            <div class="nav-content">
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="gotoNearestSportShop()"><i class="material-icons left">location_on</i>最近的健身用品店</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="container" style="height:800px;width:100%;"></div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <h6>武汉大学</h4>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
+			$(".dropdown-button").dropdown({
+                constrainWidth: false
+            });
+    })
+</script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=242898d44867b6db1ef89fdfd597f4bf"></script>
+<script>
+    var map, infoWindow, sportshoparray, curSportShop, curLocation, curMarker, curMarkerIcon, geolocation, walking;
+
+    curMarkerIcon = new AMap.Icon({
+        image: "/images/terminal.png"
+    })
+
+    $(function () {
+        map = new AMap.Map('container', {
+            zoom: 11,
+            center: [114.2641, 30.6024],
+            resizeEnable: true
+        });
+
+        map.plugin('AMap.Geolocation', function () {
+            geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                showButton: true,        //显示定位按钮，默认：true
+                buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            });
+            map.addControl(geolocation);
+            // geolocation.getCurrentPosition();
+            // AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+            // AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+        });
+
+        // function onComplete(data) {
+        //     curLocation = [data.position.getLng(), data.position.getLat()];
+        // }
+
+        // function onError() {
+        //     Materialize.toast('定位失败', 4000);
+        //     curLocation = [114.2641, 30.6024];
+        // }
+
+        AMap.service('AMap.Walking',function(){//回调函数
+            //实例化Walking
+            walking = new AMap.Walking({city: '北京市'});
+            //TODO: 使用walking对象调用步行路径规划相关的功能
+        })
+
+        infoWindow = new AMap.InfoWindow({
+            autoMove: true
+        });
+
+        var sportshopIcon = new AMap.Icon({
+            image: "/images/sportshop_shoe.png",
+            size: new AMap.Size(24,24)
+        })
+
+        $.getJSON("/js/json/SportShopGaode.json", function (data) {
+            sportshoparray = data.RECORDS;
+            sportshoparray.forEach(function(sportshop) {
+                if (sportshop.SportShopLng && sportshop.SportShopLat) {
+                    var marker = new AMap.Marker({
+                        position: [sportshop.SportShopLng, sportshop.SportShopLat],
+                        map: map,
+                        icon: sportshopIcon
+                    })
+                    marker.content = sportshop;
+                    marker.on('click', function (e) {
+                        curSportShop = e.target.content;
+                        var content = e.target.content;
+                        var contentHtml = 
+                        '<h5 class="teal-text">' + content.SportShopName + '</h4>\
+                        <table class="bordered">\
+                            <tr>\
+                                <td>地址</td>\
+                                <td>' + content.SportShopAddress + '</td>\
+                            </tr>\
+                            <tr>\
+                                <td>电话</td>\
+                                <td>' + (content.SportShopTel ? content.SportShopTel : "") + '</td>\
+                            </tr>\
+                        </table>\
+                        <div><a class="waves-effect waces-light btn right" onclick="javascript:routeToSportShop()">导航</button></div>'
+                        infoWindow.setContent(contentHtml);
+                        infoWindow.open(map, e.target.getPosition());
+                    })
+                }
+            }, this);
+        })
+    })
+</script>
+<script>
+    function routeToSportShop() {
+        geolocation.getCurrentPosition(function (status, result) {
+            sportShopLocation = [curSportShop.SportShopLng, curSportShop.SportShopLat];
+            if (status === "complete") {
+                curLocation = [data.position.getLng(), data.position.getLat()];
+                curMarker = new AMap.Marker({
+                    position: curLocation,
+                    map: map,
+                    icon: curMarkerIcon                        
+                })
+            } else {
+                curLocation = [114.2641, 30.6024];
+                curMarker = new AMap.Marker({
+                    position: curLocation,
+                    map: map,
+                    icon: curMarkerIcon                        
+                })
+            }
+            walking.search(curLocation, sportShopLocation, function (status, result) {
+                if (status === "complete") {
+                    var routes = result.routes; // Array<WalkRoute>
+                    routes.forEach(function(route) {
+                        var path_points = [];
+                        route.steps.forEach(function(step) {
+                            console.log(step.path)
+                            step.path.forEach(function(point) {
+                                path_points.push([point.lng, point.lat])
+                            }, this);
+                        }, this);
+                        var polyline = new AMap.Polyline({
+                            map: map,
+                            path: path_points,
+                            isOutline: true
+                        })
+                    }, this);
+                } else {
+                    
+                }
+            })
+        })
+    }
+
+    function gotoBestSportShop() {
+        var sorted = sportshoparray.sort(function (a, b) {
+            var left = a.ScoreGoodNum / a.ScoreAllNum;
+            var right = b.ScoreGoodNum / b.ScoreAllNum;
+            return -(left - right);
+        })
+        var bestSportShop = sorted[0];
+        if (bestSportShop) {
+            geolocation.getCurrentPosition(function (status, result) {
+                sportShopLocation = [bestSportShop.SportShopLng, bestSportShop.SportShopLat];
+                if (status === "complete") {
+                    curLocation = [data.position.getLng(), data.position.getLat()];
+                    curMarker = new AMap.Marker({
+                        position: curLocation,
+                        map: map,
+                        icon: curMarkerIcon                        
+                    })
+                } else {
+                    curLocation = [114.2641, 30.6024];
+                    curMarker = new AMap.Marker({
+                        position: curLocation,
+                        map: map,
+                        icon: curMarkerIcon                        
+                    })
+                }
+                walking.search(curLocation, sportShopLocation, function (status, result) {
+                    if (status === "complete") {
+                        var routes = result.routes; // Array<WalkRoute>
+                        routes.forEach(function(route) {
+                            var path_points = [];
+                            route.steps.forEach(function(step) {
+                                console.log(step.path)
+                                step.path.forEach(function(point) {
+                                    path_points.push([point.lng, point.lat])
+                                }, this);
+                            }, this);
+                            var polyline = new AMap.Polyline({
+                                map: map,
+                                path: path_points,
+                                isOutline: true
+                            })
+                        }, this);
+                    } else {
+                        
+                    }
+                })
+            })
+        }
+    }
+
+    function gotoNearestSportShop() {
+        geolocation.getCurrentPosition(function (status, result) {
+            if (status === "complete") {
+                curLocation = [data.position.getLng(), data.position.getLat()];
+                curMarker = new AMap.Marker({
+                    position: curLocation,
+                    map: map,
+                    icon: curMarkerIcon                        
+                })
+            } else {
+                curLocation = [114.2641, 30.6024];
+                curMarker = new AMap.Marker({
+                    position: curLocation,
+                    map: map,
+                    icon: curMarkerIcon                        
+                })
+            }
+            var sorted = sportshoparray.sort(function (a, b) {
+                var left = Math.sqrt((a.SportShopLng - curLocation[0]) * (a.SportShopLng - curLocation[0]) + (a.SportShopLat - curLocation[1]) *(a.SportShopLat - curLocation[1]));
+                var right = Math.sqrt((b.SportShopLng - curLocation[0]) * (b.SportShopLng - curLocation[0]) + (b.SportShopLat - curLocation[1]) *(b.SportShopLat - curLocation[1]));
+                return (left - right);
+            })
+            var bestSportShop = sorted[0];
+            sportShopLocation = [bestSportShop.SportShopLng, bestSportShop.SportShopLat];
+            walking.search(curLocation, sportShopLocation, function (status, result) {
+                if (status === "complete") {
+                    var routes = result.routes; // Array<WalkRoute>
+                    routes.forEach(function(route) {
+                        var path_points = [];
+                        route.steps.forEach(function(step) {
+                            console.log(step.path)
+                            step.path.forEach(function(point) {
+                                path_points.push([point.lng, point.lat])
+                            }, this);
+                        }, this);
+                        var polyline = new AMap.Polyline({
+                            map: map,
+                            path: path_points,
+                            isOutline: true
+                        })
+                    }, this);
+                } else {
+                    
+                }
+            })
+        })
+    }
+</script>
+</body>
+
+</html>
