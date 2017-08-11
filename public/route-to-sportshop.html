@@ -101,7 +101,7 @@
     $(function () {
         map = new AMap.Map('container', {
             zoom: 11,
-            center: [114.2641, 30.6024],
+            center: [114.35464, 30.53006],
             resizeEnable: true
         });
 
@@ -131,7 +131,7 @@
 
         // function onError() {
         //     Materialize.toast('定位失败', 4000);
-        //     curLocation = [114.2641, 30.6024];
+        //     curLocation = [114.35464, 30.53006];
         // }
 
         AMap.service('AMap.Walking',function(){//回调函数
@@ -195,7 +195,7 @@
                     icon: curMarkerIcon                        
                 })
             } else {
-                curLocation = [114.2641, 30.6024];
+                curLocation = [114.35464, 30.53006];
                 curMarker = new AMap.Marker({
                     position: curLocation,
                     map: map,
@@ -244,7 +244,7 @@
                         icon: curMarkerIcon                        
                     })
                 } else {
-                    curLocation = [114.2641, 30.6024];
+                    curLocation = [114.35464, 30.53006];
                     curMarker = new AMap.Marker({
                         position: curLocation,
                         map: map,
@@ -286,7 +286,7 @@
                     icon: curMarkerIcon                        
                 })
             } else {
-                curLocation = [114.2641, 30.6024];
+                curLocation = [114.35464, 30.53006];
                 curMarker = new AMap.Marker({
                     position: curLocation,
                     map: map,
