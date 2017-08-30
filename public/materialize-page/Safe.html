@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="text/x-sass" href="sass/default.sass">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+</head>
+
+<body>
+    <header>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+				<a href="/" class="brand-logo left">夜跑助手</a>
+				<ul id="slide-out" class="side-nav">
+					<li>
+						<div class="user-view red lighten-2 z-depth-1">
+							<div class="row valign-wrapper">
+								<img class="center-align" height="50" src="img/icon.png" alt="logo">
+								<h4 class="">夜跑助手</h5>
+							</div>
+						</div>
+					</li>
+					<li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+					<li><a href="PMDis.html">夜跑环境分析</a></li>
+					<li><a href="3D.html">三维实景</a></li>
+					<li class="active"><a href="Safe.html">夜跑安全</a></li>
+					<li><a href="contact.html">APP功能展示</a></li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="greenplaceDis.html">武汉市公园夜跑推荐</a></li>
+					<li><a href="PMDis.html">夜跑环境分析</a></li>
+					<li><a href="3D.html">三维实景</a></li>
+					<li class="active"><a href="Safe.html">夜跑安全</a></li>
+					<li><a href="contact.html">APP功能展示</a></li>
+				</ul>
+				<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+            <div class="nav-content">
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="getLocation()"><i class="material-icons left">location_on</i>当前位置</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="getRoute()"><i class="material-icons left">near_me</i>规划夜跑路线</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="remove_overlay()"><i class="material-icons left">refresh</i>重新规划</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="editRoute()"><i class="material-icons left">mode_edit</i>编辑</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="CanceleditRoute()"><i class="material-icons left">cancel</i>取消</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text" onclick="endRoute()"><i class="material-icons left">remove_red_eye</i>显示路线</a>
+                <a href="#" class="waves-effect waves-light btn-flat btn-large white-text"><i class="material-icons left">bookmark</i>路线记录</a>
+            </div>
+        </nav>
+    </header>
+
+    <div id="BDMap" style="height:800px;width:100%"></div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <h6>武汉大学</h4>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+    <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="../js/greenPlace.js"></script>
+<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+    })
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Nugb2D8pG6jiI8CLN7KGkVSdkgw6bNlS">
+    //v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+//v1.4版本及以前版本的引用方式：src="http://api.map.baidu.com/api?v=1.4&key=您的密钥&callback=initialize"
+</script>
+<script>
+    var map = new BMap.Map("BDMap");          // 创建地图实例  
+    var point = new BMap.Point(114.29, 30.55);  // 创建点坐标  
+    map.centerAndZoom(point, 13);
+
+    //确定当前坐标
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    }
+
+    function showPosition(position) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        var currentPoint = new BMap.Point(lon, lat);
+        map.centerAndZoom(currentPoint, 18);
+    }
+
+    var route = [];
+    var i;
+    function getRoute() {
+        alert("点击显示规划路线");
+        route = [];
+        i = 0;
+        map.addEventListener("click", function (e) {
+            var routePoint = new BMap.Point(e.point.lng, e.point.lat);
+            var marker = new BMap.Marker(routePoint);
+            map.addOverlay(marker);
+            //map.addMarker(routePoint);
+            route[i] = routePoint;
+            i++;
+        });
+
+
+    }
+    var curve;
+    function endRoute() {
+        curve = new BMap.Polyline(route, { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 }); //创建弧线对象
+        map.addOverlay(curve); //添加到地图中
+
+        //计算route路程
+        var RouteDis = 0;
+        for (var t = 0; t < i - 1; t++) {
+            RouteDis += map.getDistance(route[t], route[t + 1]);
+        }
+
+        var opts = {
+            width: 100,     // 信息窗口宽度
+            height: 50,     // 信息窗口高度
+            title: "路程长度", // 信息窗口标题
+
+        }
+        var infoWindow = new BMap.InfoWindow(RouteDis.toFixed(2).toString(), opts);  // 创建信息窗口对象 
+        //marker.addEventListener("click", function(){          
+        map.openInfoWindow(infoWindow, route[i - 1]); //开启信息窗口
+        //});
+    }
+    //清除覆盖物
+    function remove_overlay() {
+        map.clearOverlays();
+        route = [];
+
+    }
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+    function sendMsg() {
+        alert("邮件发送成功");
+    }
+//   $(function () {
+// 	   $("input[name='options']").click(function () {
+
+// 	 	  if ($(this).val() == "option1") {
+// 	 		  curve.enableEditing();
+
+// 	 	  }
+// 	   });
+// 	// $("input[name='options']").on('click', function () {
+// 	// 	if ($(this).val() == "option1") {
+// 	// 	curve.enableEditing();
+// 	// }
+// 	// });
+//   })
+function editRoute(){
+    curve.enableEditing();
+}
+function CanceleditRoute(){
+    curve.disableEditing();
+}
+</script>
+
+</body>
+
+</html>
