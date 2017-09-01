@@ -382,7 +382,10 @@
     }
 
     function goToGym(lng, lat) {
-        gymLocation = [lng, lat];
+        curGym = {
+            GymLng: lng,
+            GymLat: lat
+        }
         routeToGym();
     }
 </script>

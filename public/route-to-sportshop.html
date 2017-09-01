@@ -382,7 +382,10 @@
     }
 
     function goToSportShop(lng, lat) {
-        sportShopLocation = [lng, lat];
+        curSportShop = {
+            SportShopLng: lng,
+            SportShopLat: lat
+        }
         routeToSportShop();
     }
 </script>
