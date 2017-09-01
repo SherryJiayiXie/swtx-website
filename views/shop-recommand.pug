@@ -1,0 +1,22 @@
+ul.collapsible.popout(data-collapsible="accordion")
+    each item in shops
+        li
+            .collapsible-header
+                i.material-icons directions_run
+                | #{item.SportShopName}
+            .collapsible-body
+                ul.collection
+                    li.collection-item
+                        a.secondary-content(href="#!")
+                            i.material-icons(onclick='goToShop(' + item.SportShopLng + ',' + item.SportShopLat + ')') send
+                        .valign-wrapper
+                            i.material-icons location_on
+                            | 地址：#{item.SportShopAddress}
+                    li.collection-item
+                        .valign-wrapper
+                            i.material-icons local_phone
+                            | 电话：#{item.SportShopTell}
+                    li.collection-item
+                        .valign-wrapper
+                            i.material-icons thumb_up
+                            | #{item.Good}

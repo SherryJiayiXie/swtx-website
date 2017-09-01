@@ -1,6 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "node 启动",
+            "program": "${workspaceRoot}/bin/www"
+        },
         {
             "type": "chrome",
             "request": "launch",
