@@ -1,0 +1,22 @@
+ul.collapsible.popout(data-collapsible="accordion")
+    each item in gyms
+        li
+            .collapsible-header
+                i.material-icons directions_run
+                | #{item.GymName}
+            .collapsible-body
+                ul.collection
+                    li.collection-item
+                        a.secondary-content(href="#!")
+                            i.material-icons(onclick='goToGym(' + item.GymLng + ',' + item.GymLat + ')') send
+                        .valign-wrapper
+                            i.material-icons location_on
+                            | 地址：#{item.GymAddress}
+                    li.collection-item
+                        .valign-wrapper
+                            i.material-icons local_phone
+                            | 电话：#{item.GymTell}
+                    li.collection-item
+                        .valign-wrapper
+                            i.material-icons thumb_up
+                            | #{item.ScoreGoodNum}

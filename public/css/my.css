@@ -1,0 +1,8 @@
+.myfloat {
+    position: absolute;
+    left: 20px;
+    right: auto;
+    top: 130px;
+    bottom: 50px;
+    height: 80%;
+}
