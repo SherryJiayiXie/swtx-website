@@ -133,9 +133,15 @@
 
         //确定当前坐标
         function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            }
+            // if (navigator.geolocation) {
+            //     navigator.geolocation.getCurrentPosition(showPosition);
+            // }
+            showPosition({
+				coords: {
+					latitude: 30.53006,
+					longitude: 114.35464
+				}
+			})
         }
 
         function showPosition(position) {

@@ -20,7 +20,7 @@ function ArcGIS_Map_Init() {
             map: arcgis_arcgismap,
             container: "arcgismap",
             zoom: 10,
-            center: [114.2641, 30.6024]
+            center: [114.35464, 30.53006]
         });
 
         Layer.fromPortalItem({

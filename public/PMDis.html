@@ -201,7 +201,7 @@
 			polygon[item] = L.polygon(latlngs, { color: '#FFFFCC', fillColor: "#E31A1C", fillOpacity: 0.9 });
 			polygon[item].addTo(greenplace_map);
 		}
-		else if (area < 10000000) {
+		else {
 			polygon[item] = L.polygon(latlngs, { color: '#FFFFCC', fillColor: "#BD0026", fillOpacity: 0.9 });
 			polygon[item].addTo(greenplace_map);
 		}
@@ -291,7 +291,7 @@
 			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#00CC33", fillOpacity: 0.9 });
 			polygon1[item1].addTo(greenplace_map2);
 		}
-		else if (area1 < 70) {
+		else {
 			polygon1[item1] = L.polygon(latlngs1, { color: '#FFFFCC', fillColor: "#009933", fillOpacity: 0.9 });
 			polygon1[item1].addTo(greenplace_map2);
 		}
