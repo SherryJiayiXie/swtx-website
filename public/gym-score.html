@@ -59,7 +59,7 @@
         </nav>
     </header>
 
-    <div id="arcgismap" style="width:100%;height:800px;"></div>
+    <div id="map" style="width:100%;height:700px;"></div>
 
     <footer class="page-footer">
         <div class="container">
@@ -79,6 +79,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.minichart/dist/leaflet.minichart.min.js" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".button-collapse").sideNav();
@@ -87,9 +88,25 @@
             });
         })
     </script>
-    <script src="https://js.arcgis.com/4.4/"></script>
-    <script src="js/arcgis-gym-score.js"></script>
-    
+    <script type="text/javascript">
+        $(function () {
+            // 添加底图
+            var mainmap = L.map('map').setView([30.53006, 114.35464], 13);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'			//用人家的底图也不好意思还是先加上copyright吧
+            }).addTo(map);
+            // 添加图例
+            $.getJSON("/js/json/gym-score.json", function (data, textStatus) {
+                data.RECORDS.forEach(function(item) {
+                    var minichart = L.Minichart([item.GymLat, item.GymLng], {
+                        type: 'pie',
+                        data: [item.ScoreGoodNum,item.ScoreMiddleNum,item.ScoreBadNum]
+                    });
+                    mainmap.addLayer(minichart);
+                }, this);
+            })
+        })
+    </script>
     
 </body>
 
