@@ -28,7 +28,7 @@
                         <div class="user-view red lighten-2 z-depth-1">
                             <div class="row valign-wrapper">
                                 <img class="center-align" height="50" src="img/icon.png" alt="logo">
-                                <h4 class="">夜跑助手</h5>
+                                <h4 class="">夜跑助手</h4>
                             </div>
                         </div>
                     </li>
@@ -59,12 +59,16 @@
         </nav>
     </header>
 
-    <div id="map" style="width:100%;height:700px;"></div>
+    <div class="progress" style="margin: 0px;">
+        <div class="indeterminate"></div>
+    </div>
+
+    <div id="map" style="width:100%;height:780px;"></div>
 
     <footer class="page-footer">
         <div class="container">
             <div class="row">
-                <h6>武汉大学</h4>
+                <h6>武汉大学</h6>
             </div>
         </div>
         <div class="footer-copyright">
@@ -76,8 +80,8 @@
     </footer>
 
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.minichart/dist/leaflet.minichart.min.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -89,22 +93,43 @@
         })
     </script>
     <script type="text/javascript">
+        var mainmap;
         $(function () {
             // 添加底图
-            var mainmap = L.map('map').setView([30.53006, 114.35464], 13);
+            mainmap = L.map('map').setView([30.53006, 114.35464], 12);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'			//用人家的底图也不好意思还是先加上copyright吧
             }).addTo(mainmap);
             // 添加图例
-            $.getJSON("/js/json/gym-score.json", function (data, textStatus) {
-                data.RECORDS.forEach(function(item) {
-                    var minichart = L.Minichart([item.GymLat, item.GymLng], {
-                        type: 'pie',
-                        data: [item.ScoreGoodNum,item.ScoreMiddleNum,item.ScoreBadNum]
-                    });
-                    mainmap.addLayer(minichart);
-                }, this);
-            })
+            setTimeout(function() {
+                var charts = [];
+                $.getJSON("/js/json/gym-score.json", function (data, textStatus) {
+                    data.RECORDS.forEach(function(item) {
+                        var point = L.point();
+                        var minichart = L.minichart([item.GymLat, item.GymLng], {
+                            type: 'pie',
+                            data: [item.ScoreGoodNum,item.ScoreMiddleNum,item.ScoreBadNum],
+                            height: 20,
+                            width: 20,
+                            maxValues: 2000
+                        });
+                        charts.push(minichart);
+                    }, this);
+                }).done(function () {
+                    var i = 0;
+                    var interval = setInterval(function () {
+                        charts.slice(i * 10, (i + 1) * 10).forEach(function (item) {
+                            mainmap.addLayer(item);
+                        })
+                        if (i >= charts.length / 10) {
+                            clearInterval(interval);
+                            $('.progress').fadeOut(300);
+                        } else {
+                            i = i + 1;
+                        }
+                    }, 500)
+                })
+            }, 5000);
         })
     </script>
     
