@@ -45,7 +45,7 @@
                     <li><a href="PMDis.html">夜跑环境分析</a></li>
                     <li><a href="3D.html">三维实景</a></li>
                     <li class="active"><a href="Safe.html">夜跑安全</a></li>
-					<li><a href="gym-score.html">健身房评估</a></li>
+                    <li><a href="gym-score.html">健身房评估</a></li>
                     <li>
                         <a class="dropdown-button" href="#!" data-activates="nav-avigation-dropdown">导航<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="nav-avigation-dropdown" class="dropdown-content">
@@ -69,7 +69,7 @@
         </nav>
     </header>
 
-    <div id="BDMap" style="height:800px;width:100%"></div>
+    <div id="map" style="height:800px;width:100%"></div>
 
     <div id="route-record-modal" class="modal">
         <div class="modal-content">
@@ -115,120 +115,90 @@
             $('select').material_select();
             $(".button-collapse").sideNav();
             $('.modal').modal();
-			$(".dropdown-button").dropdown({
+            $(".dropdown-button").dropdown({
                 constrainWidth: false
             });
         })
-
     </script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Nugb2D8pG6jiI8CLN7KGkVSdkgw6bNlS">
-        //v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
-//v1.4版本及以前版本的引用方式：src="http://api.map.baidu.com/api?v=1.4&key=您的密钥&callback=initialize"
 
-    </script>
     <script>
-        var map = new BMap.Map("BDMap");          // 创建地图实例  
-        var point = new BMap.Point(114.29, 30.55);  // 创建点坐标  
-        map.centerAndZoom(point, 13);
+        // 基本地图
+        var map = L.map('map').setView([30.53006, 114.35464], 13);
+        var basemaps = {
+            BaseMap: L.tileLayer.wms('http://139.129.166.245:8091/geoserver/swtx/wms?', {
+                layers: 'swtx:wuhan_osm_all'
+            }),
 
-        //确定当前坐标
-        function getLocation() {
-            // if (navigator.geolocation) {
-            //     navigator.geolocation.getCurrentPosition(showPosition);
-            // }
-            showPosition({
-				coords: {
-					latitude: 30.53006,
-					longitude: 114.35464
-				}
-			})
-        }
-
-        function showPosition(position) {
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
-            var currentPoint = new BMap.Point(lon, lat);
-            map.centerAndZoom(currentPoint, 18);
-        }
-
-        var route = [];
-        var i;
-        function getRoute() {
-            alert("点击显示规划路线");
-            route = [];
-            i = 0;
-            map.addEventListener("click", function (e) {
-                var routePoint = new BMap.Point(e.point.lng, e.point.lat);
-                var marker = new BMap.Marker(routePoint);
-                map.addOverlay(marker);
-                //map.addMarker(routePoint);
-                route[i] = routePoint;
-                i++;
-            });
-
-
-        }
-        var curve;
-        function endRoute() {
-            curve = new BMap.Polyline(route, { strokeColor: "blue", strokeWeight: 3, strokeOpacity: 0.5 }); //创建弧线对象
-            map.addOverlay(curve); //添加到地图中
-
-            //计算route路程
-            var RouteDis = 0;
-            for (var t = 0; t < i - 1; t++) {
-                RouteDis += map.getDistance(route[t], route[t + 1]);
-            }
-
-            var opts = {
-                width: 100,     // 信息窗口宽度
-                height: 50,     // 信息窗口高度
-                title: "路程长度", // 信息窗口标题
-
-            }
-            var infoWindow = new BMap.InfoWindow(RouteDis.toFixed(2).toString(), opts);  // 创建信息窗口对象 
-            //marker.addEventListener("click", function(){          
-            map.openInfoWindow(infoWindow, route[i - 1]); //开启信息窗口
-            //});
-        }
-        //清除覆盖物
-        function remove_overlay() {
-            map.clearOverlays();
-            route = [];
-
-        }
-        $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
+            RoadSpeed: L.tileLayer.wms('http://139.129.166.245:8091/geoserver/swtx/wms?', {
+                layers: 'swtx:road_speed'
+            }),
+        };
+        L.control.layers(basemaps).addTo(map);
+        basemaps.BaseMap.addTo(map);
+        // 点和线等对象
+        var icon = L.icon({
+            iconUrl: '/images/loc.png',
+            iconAnchor: [42, 39],
+            iconSize: [84, 39]
         })
-        function sendMsg() {
-            alert("邮件发送成功");
+        var lines = [];
+        var isPlaning = false;
+        // 开始规划路线
+        function getRoute() {
+            if (isPlaning) {
+                alert('已在规划路线');
+            } else {
+                isPlaning = true;
+                alert('点击规划路线，右键结束。')
+                lines.push({
+                    points: [],
+                    pointIcons: [],
+                    polyline: null
+                })
+            }
         }
-        //   $(function () {
-        // 	   $("input[name='options']").click(function () {
+        // 单击地图
+        map.on('click', function (e) {
+            if (isPlaning) {
+                var line = lines[lines.length - 1];
+                var curPoint = [e.latlng.lat, e.latlng.lng];
+                line.points.push(curPoint);
+                var marker = L.marker(e.latlng, {
+                    draggable: true,
+                    icon: icon
+                })
+                line.pointIcons.push(marker);
+                marker.addTo(map);
+                marker.on('move', function (e) {
+                    curPoint[0] = e.latlng.lat;
+                    curPoint[1] = e.latlng.lng;
+                    line.polyline.setLatLngs(line.points);
+                })
+            }
+        });
+        map.on('contextmenu', function (e) {
+            if (isPlaning) {
+                isPlaning = false;
+                var line = lines[lines.length - 1];
+                line.polyline = L.polyline(line.points, {color: 'red'}).addTo(map);
+            }
+        })
 
-        // 	 	  if ($(this).val() == "option1") {
-        // 	 		  curve.enableEditing();
-
-        // 	 	  }
-        // 	   });
-        // 	// $("input[name='options']").on('click', function () {
-        // 	// 	if ($(this).val() == "option1") {
-        // 	// 	curve.enableEditing();
-        // 	// }
-        // 	// });
-        //   })
-        function editRoute() {
-            curve.enableEditing();
+        // 重新规划
+        function remove_overlay() {
+            if (isPlaning) {
+                alert('请先完成规划');
+            } else {
+                lines.forEach(function(line) {
+                    line.polyline.remove();
+                    line.pointIcons.forEach(function(point) {
+                        point.remove();
+                    }, this);
+                }, this);
+                lines = [];
+                getRoute();
+            }
         }
-        function CanceleditRoute() {
-            curve.disableEditing();
-        }
-
     </script>
 
 </body>

@@ -94,7 +94,7 @@
             var mainmap = L.map('map').setView([30.53006, 114.35464], 13);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'			//用人家的底图也不好意思还是先加上copyright吧
-            }).addTo(map);
+            }).addTo(mainmap);
             // 添加图例
             $.getJSON("/js/json/gym-score.json", function (data, textStatus) {
                 data.RECORDS.forEach(function(item) {
